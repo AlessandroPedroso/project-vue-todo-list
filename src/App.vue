@@ -32,7 +32,7 @@ import TodoSpinner from '@/components/TodoSpinner.vue'
 import TodoFormAdd from './components/TodoFormAdd.vue';
 import TodoItems from './components/TodoItems.vue';
 import TodoEmpaty from './components/TodoEmpaty.vue';
-import axios from 'axios'
+
 
 export default {
   name: 'App',
@@ -54,16 +54,10 @@ export default {
   // }
   created() {
     this.loading = true
-    axios.get('http://localhost:3000/todos')
-      .then((response) => {
-        // console.log(response)
-        this.todos = response.data
-        this.$store.commit('storeTodos', response.data)
-        // console.log(this.todos)
-      })
-      .finally(() => {
-        this.loading = false
-      })
+    this.$store.dispatch('getTodos').finally(() => {
+      this.loading = false
+    })
+
   }
 }
 </script>
