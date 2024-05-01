@@ -13,7 +13,7 @@ export default createStore({
     },
     storeTodo(state,payload){
       // state.todos.push(payload)
-      state.todos.unshift(payload)
+      state.todos.push(payload)
       // state.todos.push(payload)
     }
   },
@@ -37,6 +37,19 @@ export default createStore({
       return axios.post('http://localhost:3000/todos',data).then((response)=>{
         commit('storeTodo',response.data)
       })
+    },
+    updateTodo({commit},{id,data}){
+      
+      //realizar utilizando desestruturação
+      return axios.put(`http://localhost:3000/todos/${id}`,data).then((response)=>{
+        commit('storeTodo',response.data)
+      })
+      
+      // da para fazer assim por propriedade alterando para data
+      // return axios.put(`http://localhost:3000/todos/${data.id}`,{
+      //   title:data.title,
+      //   completed:data.completed
+      // })
     }
   },
   modules: {
