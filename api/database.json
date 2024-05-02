@@ -1,63 +1,13 @@
 {
   "todos": [
     {
-      "title": "Estudar JavaScript e Java",
-      "completed": true,
-      "id": "1"
-    },
-    {
-      "title": "Estudar Vue e React",
-      "completed": false,
-      "id": "2"
-    },
-    {
-      "title": "Estudar composition API",
-      "completed": true,
-      "id": "3"
-    },
-    {
-      "title": "Estudar React Native",
-      "completed": true,
-      "id": "973c"
-    },
-    {
-      "title": "Estudar Java, spring, postgres e JPA",
-      "completed": false,
-      "id": "4337"
-    },
-    {
-      "title": "Estudar C#",
-      "completed": false,
-      "id": "83bd"
-    },
-    {
-      "title": "Estudar Node",
-      "completed": true,
-      "id": "6b2c"
-    },
-    {
-      "title": "Estudar SQL e java",
-      "completed": true,
-      "id": "c382"
-    },
-    {
-      "id": "5bfb",
-      "title": "Estudar Python",
+      "id": "dbaa",
+      "title": "estudar java",
       "completed": false
     },
     {
-      "title": "Estudar vuex e vue router",
-      "completed": false,
-      "id": "a542"
-    },
-    {
-      "id": "db3e",
-      "title": "estudar web designer",
-      "completed": false
-    },
-    {
-      "id": "264a",
-      "title": "estudar angular",
+      "id": "5981",
+      "title": "estudar nodeJS",
       "completed": false
     }
   ]
