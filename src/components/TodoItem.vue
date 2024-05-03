@@ -4,7 +4,7 @@
 border-gray-400 last:border-b-0">
             <div class="flex items-center justify-center 
 mr-2">
-                <button @click="onCheckClick" :class="{'text-green-600':isCompleted,'text-gray-400':!isCompleted}">
+                <button @click="onCheckClick" :class="{ 'text-green-600': isCompleted, 'text-gray-400': !isCompleted }">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
@@ -46,21 +46,14 @@ export default {
 
     data() {
         return {
-            title:this.todo.title,
-            isCompleted:this.todo.completed
+            title: this.todo.title,
+            isCompleted: this.todo.completed
         }
     },
     methods: {
-        onTitleChange() {
 
-            if(!this.title){
-                return
-            }
-
-           this.updateTodo()
-        },
-        updateTodo(){
-                        //modo direto e alterando na store
+        updateTodo() {
+            //modo direto e alterando na store
             // const playoud = {
             //     id: this.todo.id,
             //     title: newTitile,
@@ -76,13 +69,21 @@ export default {
 
             this.$store.dispatch('updateTodo', playoud)
         },
-        onCheckClick(){
+        onTitleChange() {
+
+            if (!this.title) {
+                return
+            }
+
+            this.updateTodo()
+        },
+        onCheckClick() {
             this.isCompleted = !this.isCompleted
             this.updateTodo()
         },
-        onDelete(){
+        onDelete() {
             // console.log(this.todo.id)
-            this.$store.dispatch('deleteTodo',this.todo.id)
+            this.$store.dispatch('deleteTodo', this.todo.id)
         }
     },
 }

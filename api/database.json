@@ -1,14 +1,3 @@
 {
-  "todos": [
-    {
-      "id": "dbaa",
-      "title": "estudar java",
-      "completed": false
-    },
-    {
-      "id": "5981",
-      "title": "estudar nodeJS",
-      "completed": false
-    }
-  ]
+  "todos": []
 }
