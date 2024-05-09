@@ -19,7 +19,7 @@ text-gray-700 font-light focus:outline-none block w-full appearance-none
 leading-normal mr-3" @keyup.enter="onTitleChange">
             </div>
 
-            <div class="ml-auto flex items-center 
+            <div class="ml-auto flex items-center
 justify-center">
                 <button @click="onDelete" class="focus:outline-none">
                     <svg class="ml-3 h-4 w-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -36,6 +36,9 @@ justify-center">
 </template>
 
 <script>
+import { ref } from 'vue'
+import { useStore } from 'vuex'
+
 export default {
     props: {
         todo: {
@@ -44,15 +47,19 @@ export default {
         }
     },
 
-    data() {
-        return {
-            title: this.todo.title,
-            isCompleted: this.todo.completed
-        }
-    },
-    methods: {
+    setup(props) {
+        const title = ref(props.todo.title)
+        const isCompleted = ref(props.todo.completed)
+        const store = useStore()
 
-        updateTodo() {
+        // onDelete
+        const onDelete = () => {
+            // console.log(this.todo.id)
+            store.dispatch('deleteTodo', props.todo.id)
+        }
+
+        //Update Todo
+        const updateTodo = () => {
             //modo direto e alterando na store
             // const playoud = {
             //     id: this.todo.id,
@@ -60,31 +67,84 @@ export default {
             //     completed: this.todo.completed
             // }
             const playoud = {
-                id: this.todo.id,
+                id: props.todo.id,
                 data: {
-                    title: this.title,
-                    completed: this.isCompleted
+                    title: title.value,
+                    completed: isCompleted.value
                 }
             }
 
-            this.$store.dispatch('updateTodo', playoud)
-        },
-        onTitleChange() {
+            store.dispatch('updateTodo', playoud)
+        }
 
-            if (!this.title) {
+        //onTitleChange
+        const onTitleChange = () => {
+
+            if (!title.value) {
                 return
             }
 
-            this.updateTodo()
-        },
-        onCheckClick() {
-            this.isCompleted = !this.isCompleted
-            this.updateTodo()
-        },
-        onDelete() {
-            // console.log(this.todo.id)
-            this.$store.dispatch('deleteTodo', this.todo.id)
+            updateTodo()
         }
+
+        //onCheckClick
+        const onCheckClick = () => {
+            isCompleted.value = !isCompleted.value
+            updateTodo()
+        }
+
+        return {
+            title,
+            isCompleted,
+            onDelete,
+            onTitleChange,
+            onCheckClick
+        }
+
+    },
+
+    // data() {
+    //     return {
+    //         title: this.todo.title,
+    //         isCompleted: this.todo.completed
+    //     }
+    // },
+    methods: {
+
+        // updateTodo() {
+        //     //modo direto e alterando na store
+        //     // const playoud = {
+        //     //     id: this.todo.id,
+        //     //     title: newTitile,
+        //     //     completed: this.todo.completed
+        //     // }
+        //     const playoud = {
+        //         id: this.todo.id,
+        //         data: {
+        //             title: this.title,
+        //             completed: this.isCompleted
+        //         }
+        //     }
+
+        //     this.$store.dispatch('updateTodo', playoud)
+        // },
+
+        // onTitleChange() {
+
+        //     if (!this.title) {
+        //         return
+        //     }
+
+        //     this.updateTodo()
+        // },
+        // onCheckClick() {
+        //     this.isCompleted = !this.isCompleted
+        //     this.updateTodo()
+        // },
+        // onDelete() {
+        //     // console.log(this.todo.id)
+        //     this.$store.dispatch('deleteTodo', this.todo.id)
+        // }
     },
 }
 
